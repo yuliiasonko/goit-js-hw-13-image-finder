@@ -8,15 +8,21 @@ export default class ImageApiService {
   }
 
   async fetchImage() {
-    const responseUrl = await fetch(
-      `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`,
-    );
+    try {
+      const responseUrl = await fetch(
+        `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`,
+      );
 
-    const { hits: images } = await responseUrl.json();
-    this.incrementPage();
+      const { hits: images } = await responseUrl.json();
+      this.incrementPage();
+      
+       return images;
 
-    return images;
-  }
+    }  catch (e) {
+    alert( "Извините, тут ошибка");
+    }
+   
+    }
  
   incrementPage() {
     this.page += 1;
