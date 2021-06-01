@@ -1,14 +1,14 @@
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
-function onGalleryElClick(event) {
-  event.preventDefault();
+function onGalleryElClick(e) {
+  e.preventDefault();
 
-  if (event.target.nodeName !== 'IMG') {
+  if (e.target.nodeName !== 'IMG') {
     return;
   }
 
-  const changeModalImage = `<img src=${event.target.dataset.source} alt="icon" />`;
+  const changeModalImage = `<img src=${e.target.dataset.source} alt="icon" />`;
   const instance = basicLightbox.create(changeModalImage);
 
   instance.show();
